@@ -1,13 +1,17 @@
-import User from "../models/userModel";
+import User from "../models/userModel.js";
+
 const getAllUsers = (req, res) => {
-  res.send("get reqest was sent!");
-};
-const createNewUsers = (req, res) => {
-  const user = User.create(req.body);
-  res.send(user);
+  res.send("get request was sent!");
 };
 
-export default {
-  getAllUsers,
-  createNewUsers,
+const createNewUsers = async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.status(201).send(user);
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
+
+export { getAllUsers, createNewUsers };
