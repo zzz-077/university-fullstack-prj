@@ -2,6 +2,5 @@
 Frontend/node_modules
 Backend/node_modules
 
-# Environment variables
+# Ignore environment variables
 .env
-Backend/.env
