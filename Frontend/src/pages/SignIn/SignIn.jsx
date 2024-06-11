@@ -2,8 +2,8 @@ import { useState } from "react";
 // import React, { useState } from "react";
 import axios from "axios";
 const SignIn = () => {
+  axios.defaults.withCredentials = true;
   const [showPassword, setShowPassword] = useState(false);
-
   const [formData, setFormData] = useState({
     userID: "",
     password: "",
@@ -47,16 +47,24 @@ const SignIn = () => {
       .then((res) => {
         console.log(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(
+        (err) => {
+          console.log(err);
+        },
+        { withCredentials: true }
+      );
   };
+
   return (
-    <div className="w-full h-full bg-slate-950 flex items-center justify-center">
-      <div className="w-full max-w-sm py-6 px-6   rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-        <form className="pb-5" onSubmit={handleSubmit}>
+    <div className="sm:relative w-full h-full flex items-center justify-center bg-slate-950 z-1">
+      <div className="absolute inset-0 bg-[url('/images/map.png')] bg-opacity-100  z-3 bg-center bg-no-repeat bg-contain mix-blend-screen opacity-[0.08] saturate-0 invert"></div>
+      <div
+        className="z-10 w-full max-w-sm h-full bg-opacity-35 backdrop-blur-sm sm:h-auto flex items-center justify-center py-6 px-6 sm:rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700 bg drop-shadow-md
+      "
+      >
+        <form className="pb-2 w-full" onSubmit={handleSubmit}>
           <h5 className="text-2xl font-medium text-white text-center uppercase">
-            SIS IBSU
+            Log In
           </h5>
           <div className="mt-3 mb-4">
             <label
@@ -97,7 +105,9 @@ const SignIn = () => {
               <button
                 type="button"
                 onClick={() => {
-                  formData.password ? setShowPassword((prev) => !prev) : null;
+                  formData.password
+                    ? setShowPassword((prev) => !prev)
+                    : null;
                 }}
                 className={`absolute top-0 end-0 p-3.5 rounded-e-md transition-all duration-300 ${
                   formData.password
@@ -151,6 +161,12 @@ const SignIn = () => {
           >
             Login
           </button>
+          <p className="w-full text-center mt-5 text-xl text-blue-600 font-bold">
+            &copy;IBSU <br />
+            <span className="text-sm text-blue-300/40 font-normal">
+              Student Information System
+            </span>
+          </p>
         </form>
       </div>
     </div>
