@@ -5,6 +5,6 @@ import signInUserRoutes from "./signIn/signInUsers.js";
 const router = express.Router();
 
 router.use("/admin", adminCreateUserRoutes);
-router.use("/", signInUserRoutes);
+router.use("/signIn", signInUserRoutes);
 
 export default router;
