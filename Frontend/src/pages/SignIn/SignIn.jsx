@@ -1,5 +1,4 @@
-import { useState } from "react";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,12 +22,12 @@ const SignIn = () => {
     axios
       .post("http://localhost:3000/admin/create", {
         userInfo: {
-          firstName: "vaska",
-          lastName: "zadiashvili",
-          personalID: "123456489",
-          email: "vask.zzz@example.com",
+          firstName: "merbaa",
+          lastName: "Doe",
+          personalID: "123456789",
+          email: "john.doe@example.com",
           DOB: "1990-01-01",
-          POB: "Tbilisi",
+          POB: "New York",
           userID: null,
           mobileNum: "1234567890",
           password: "123123",
@@ -39,9 +38,6 @@ const SignIn = () => {
           sector: "Public",
           image: "https://example.com/profile_image.jpg",
           positionID: 1,
-        },
-        passwordRepeat: {
-          password: "123123",
         },
       })
       .then((res) => {
@@ -145,8 +141,8 @@ const SignIn = () => {
           <button
             type="submit"
             className="w-full text-white focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-300"
-            onClick={() => {
-              addUser();
+            onClick={()=>{
+              addUser()
             }}
           >
             Login
