@@ -1,9 +1,10 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import Students from "../../../models/studentModel.js";
 import Users from "../../../models/userModel.js";
 import Lecturers from "../../../models/lecturerModel.js";
 import Admins from "../../../models/adminModel.js";
 import passwordValid from "../../../validations/passwordValidation.js";
-import bcrypt from "bcrypt";
 import { createUserByPosition } from "../../../utils/createUserByPosition.js";
 import { generateID } from "../../../utils/generateUserID.js";
 
@@ -19,20 +20,33 @@ async function createUser(req, res) {
     if (!isPasswordValid) throw new Error("Password does not match!");
 
     await createUserByPosition(userInfo, userInfo.positionID);
-    res.status(201).json({
+    const token = jwt.sign(
+      { userID: userInfo.userID},
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.cookie("token", token, { maxAge: 60*60*1000, httpOnly: true });
+    return res.status(201).json({
       status: "success",
-      message: "Data retrieved successfully",
+      message: "User created successfully",
+      data:{
+        token,
+        userID: userInfo.userID
+      },
       errors: null,
     });
   } catch (error) {
-    res.status(500).json({
+    const statusCode = error.message === "Passwords do not match!" ? 400 : 500;
+    res.status(statusCode).json({
       status: "fail",
-      message: "Data retrieval failed",
+      message: "User creation failed",
       errors: error.message,
     });
   }
 }
-
+ 
 async function createStudent(userInfo) {
   userInfo.userID = await generateID(userInfo.positionID);
   userInfo.password = await bcrypt.hash(userInfo.password, 10);
