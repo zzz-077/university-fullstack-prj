@@ -54,7 +54,10 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    positionID: 3,
+    positionID:{
+      type:Number,
+      required: true
+    }
   },
   {
     timestamps: true,

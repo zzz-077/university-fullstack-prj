@@ -3,7 +3,8 @@ import express from "express";
 const router = express.Router();
 router.use(
   cors({
-    origin: `http://localhost:${process.env.FRONTEND_PORT}`,
+    origin: `http://localhost:5173`,
+    credentials:true
   })
 );
 router.use(express.json());
