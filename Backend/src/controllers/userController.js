@@ -1,8 +1,8 @@
 import Users from "../models/userModel.js";
 
 const getAllUsers = (req, res) => {
-  const currentYear = new Date().getFullYear(); 
-  const lastTwoDigits = currentYear % 100; 
+  const currentYear = new Date().getFullYear();
+  const lastTwoDigits = currentYear % 100;
   res.send(`Last two digits of the current year are: ${lastTwoDigits}`);
 };
 

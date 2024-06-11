@@ -54,10 +54,10 @@ const lecturerSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    positionID:{
-      type:Number,
-      required: true
-    }
+    positionID: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
