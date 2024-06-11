@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,6 +18,35 @@ const SignIn = () => {
     console.log(formData);
   };
 
+  const addUser = () => {
+    axios
+      .post("http://localhost:3000/admin/create", {
+        userInfo: {
+          firstName: "merbaa",
+          lastName: "Doe",
+          personalID: "123456789",
+          email: "john.doe@example.com",
+          DOB: "1990-01-01",
+          POB: "New York",
+          userID: null,
+          mobileNum: "1234567890",
+          password: "123123",
+          enrolledYear: 2018,
+          graduatedYear: null,
+          faculty: "Engineering",
+          facultyProgram: "Computer Science",
+          sector: "Public",
+          image: "https://example.com/profile_image.jpg",
+          positionID: 1,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="w-full h-full bg-slate-950 flex items-center justify-center">
       <div className="w-full max-w-sm py-6 px-6   rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700">
@@ -64,9 +93,7 @@ const SignIn = () => {
               <button
                 type="button"
                 onClick={() => {
-                  formData.password
-                    ? setShowPassword((prev) => !prev)
-                    : null;
+                  formData.password ? setShowPassword((prev) => !prev) : null;
                 }}
                 className={`absolute top-0 end-0 p-3.5 rounded-e-md transition-all duration-300 ${
                   formData.password
@@ -114,6 +141,9 @@ const SignIn = () => {
           <button
             type="submit"
             className="w-full text-white focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-300"
+            onClick={()=>{
+              addUser()
+            }}
           >
             Login
           </button>

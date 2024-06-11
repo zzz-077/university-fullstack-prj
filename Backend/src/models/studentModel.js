@@ -62,7 +62,10 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    positionID:1
+    positionID:{
+      type:Number,
+      required: true
+    }
   },
   {
     timestamps: true,
