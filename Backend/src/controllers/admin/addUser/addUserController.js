@@ -20,21 +20,18 @@ async function createUser(req, res) {
     if (!isPasswordValid) throw new Error("Password does not match!");
 
     await createUserByPosition(userInfo, userInfo.positionID);
-    const token = jwt.sign(
+    const token = await jwt.sign(
       { userID: userInfo.userID},
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",
       }
     );
-    res.cookie("token", token, { maxAge: 60*60*1000, httpOnly: true });
+  
+    res.cookie("token", token, { maxAge: 60 * 60 * 1000, httpOnly: true });
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
-      data:{
-        token,
-        userID: userInfo.userID
-      },
       errors: null,
     });
   } catch (error) {
