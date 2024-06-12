@@ -8,7 +8,7 @@ import {
 export default function AuthRequired() {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLogged = false;
+  const isLogged = true;
 
   useEffect(() => {
     if (!isLogged) {
