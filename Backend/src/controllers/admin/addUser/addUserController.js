@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import Students from "../../../models/studentModel.js";
 import Users from "../../../models/userModel.js";
 import Lecturers from "../../../models/lecturerModel.js";
@@ -15,20 +14,12 @@ async function createUser(req, res) {
     userInfo.password,
     req.body.passwordRepeat.password
   );
-
+ 
   try {
     if (!isPasswordValid) throw new Error("Password does not match!");
 
     await createUserByPosition(userInfo, userInfo.positionID);
-    const token = await jwt.sign(
-      { userID: userInfo.userID},
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-  
-    res.cookie("token", token, { maxAge: 60 * 60 * 1000, httpOnly: true });
+
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
