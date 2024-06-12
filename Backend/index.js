@@ -7,7 +7,6 @@ import routesRouter  from "./src/routes/index.js";
 dotenv.config();
 const app = express();
 
-
 app.use(middlewareRouter);
 
 app.use("/", routesRouter);

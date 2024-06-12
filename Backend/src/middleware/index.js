@@ -9,7 +9,5 @@ router.use(
   })
 );
 router.use(express.json());
-
-router.use(cookieParser());
-
+router.use(cookieParser())
 export default router;
