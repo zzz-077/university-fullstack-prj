@@ -17,63 +17,7 @@ const SignIn = () => {
     e.preventDefault();
     console.log(formData);
   };
-  const addUser = () => {
-    axios
-      .post(
-        "http://localhost:3000/admin/create",
-        {
-          userInfo: {
-            firstName: "merbaa",
-            lastName: "Doe",
-            personalID: "123456789",
-            email: "john.doe@example.com",
-            DOB: "1990-01-01",
-            POB: "New York",
-            userID: null,
-            mobileNum: "1234567890",
-            password: "123123",
-            enrolledYear: 2018,
-            graduatedYear: null,
-            faculty: "Engineering",
-            facultyProgram: "Computer Science",
-            sector: "Public",
-            image: "https://example.com/profile_image.jpg",
-            positionID: 1,
-          },
-          passwordRepeat: {
-            password: "123123",
-          },
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const login = () => {
-    axios
-      .post(
-        "http://localhost:3000/signin/",
-        {
-          userID: "24100001",
-          password: "123123",
-        },{
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  
   return (
     <div className="xs:relative w-full h-full flex items-center justify-center bg-slate-950 z-1">
       <div className="absolute inset-0 bg-[url('/images/map.png')] bg-opacity-100  z-3 bg-center bg-no-repeat bg-contain mix-blend-screen opacity-[0.08] saturate-0 invert"></div>
@@ -168,22 +112,9 @@ const SignIn = () => {
               </button>
             </div>
           </div>
-
           <button
             type="submit"
             className="w-full text-white focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-300"
-            onClick={() => {
-              addUser();
-            }}
-          >
-            Create User
-          </button>
-          <button
-            type="submit"
-            className="w-full text-white focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-300"
-            onClick={() => {
-              login();
-            }}
           >
             Login
           </button>
