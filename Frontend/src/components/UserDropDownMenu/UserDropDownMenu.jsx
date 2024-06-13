@@ -25,17 +25,17 @@ const UserDropDownMenu = () => {
   }, []);
 
   return (
-    <div ref={ref} class="relative ml-3">
+    <div ref={ref} className="relative ml-3">
       <div>
         <button
           type="button"
-          class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-1 focus:ring-gray-700 focus:ring-offset-1 focus:ring-offset-gray-800"
+          className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-1 focus:ring-gray-700 focus:ring-offset-1 focus:ring-offset-gray-800"
           onClick={toggleMenu}
         >
-          <span class="absolute -inset-1.5"></span>
-          <span class="sr-only">Open user menu</span>
+          <span className="absolute -inset-1.5"></span>
+          <span className="sr-only">Open user menu</span>
           <img
-            class="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full"
             src="/icons/user.png"
             alt=""
             onError={(e) => (e.target.src = "/icons/logo.png")}
@@ -50,7 +50,7 @@ const UserDropDownMenu = () => {
       >
         <Link
           to="/profile"
-          class="flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110"
+          className="flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110"
           role="menuitem"
           tabIndex="-1"
           id="user-menu-item-0"
@@ -58,7 +58,7 @@ const UserDropDownMenu = () => {
           Your Profile{" "}
           <FaUserGraduate className="text-lg opacity-90" />
         </Link>
-        <button class="w-full flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110">
+        <button className="w-full flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110">
           Sign out
           <TbLogout2 className="text-lg opacity-90" />
         </button>

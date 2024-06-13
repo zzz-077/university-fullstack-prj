@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import Layout from "./components/Layout/Layout";
 import HomeStudent from "./pages/HomeStudent";
 import ProfileStudent from "./pages/ProfileStudent";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="profile" element={<ProfileStudent />} />
           </Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -38,7 +38,9 @@ const Sidebar = () => {
 
   console.log({ isMobile, isSidebarOpen });
   return (
-    <div className="relative w-fit h-fit">
+    <div
+      className={"relative " + (isSidebarOpen ? "w-fit " : "w-0 ")}
+    >
       {!isMobile && (
         <button
           onClick={() => {
