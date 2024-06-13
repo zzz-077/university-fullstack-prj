@@ -13,6 +13,7 @@ const lecturerSchema = new mongoose.Schema(
     personalID: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,

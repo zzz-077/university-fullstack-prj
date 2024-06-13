@@ -13,6 +13,7 @@ const adminSchema = new mongoose.Schema(
     personalID: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -54,10 +55,10 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    positionID:{
-      type:Number,
-      required: true
-    }
+    positionID: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
