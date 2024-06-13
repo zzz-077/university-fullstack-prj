@@ -14,7 +14,7 @@ async function createUser(req, res) {
     userInfo.password,
     req.body.passwordRepeat.password
   );
- 
+
   try {
     if (!isPasswordValid) throw new Error("Password does not match!");
 
@@ -23,6 +23,9 @@ async function createUser(req, res) {
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
+      data: {
+        userID: userInfo.userID,
+      },
       errors: null,
     });
   } catch (error) {
@@ -34,7 +37,7 @@ async function createUser(req, res) {
     });
   }
 }
- 
+
 async function createStudent(userInfo) {
   userInfo.userID = await generateID(userInfo.positionID);
   userInfo.password = await bcrypt.hash(userInfo.password, 10);
