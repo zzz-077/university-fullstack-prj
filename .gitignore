@@ -4,3 +4,5 @@ Backend/node_modules
 
 # Ignore .env file in Backend
 Backend/.env
+
+node_modules
