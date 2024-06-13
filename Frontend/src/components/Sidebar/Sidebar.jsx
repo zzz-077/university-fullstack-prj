@@ -43,10 +43,7 @@ const Sidebar = () => {
     >
       {!isMobile && (
         <button
-          onClick={() => {
-            console.log("Toggle BTN");
-            toggleSidebar();
-          }}
+          onClick={toggleSidebar}
           className="absolute inset-0 left-full m-auto text-4xl z-[99999999999] opacity-0 transition-all duration-[0.350s] hover:opacity-100 h-full w-fit delay-100"
         >
           {isSidebarOpen ? (
@@ -84,6 +81,7 @@ const Sidebar = () => {
             <li>
               <NavLink
                 to="/"
+                onClick={() => (isMobile ? closeSidebar() : null)}
                 className={({ isActive }) =>
                   (isActive ? "bg-gray-700/40" : "") +
                   " flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
@@ -96,6 +94,7 @@ const Sidebar = () => {
             <li>
               <NavLink
                 to="/transcript"
+                onClick={() => (isMobile ? closeSidebar() : null)}
                 className={({ isActive }) =>
                   (isActive ? "bg-gray-700/40" : "") +
                   " flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
@@ -109,7 +108,8 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
-                href="tuition"
+                to="tuition"
+                onClick={() => (isMobile ? closeSidebar() : null)}
                 className={({ isActive }) =>
                   (isActive ? "bg-gray-700/40" : "") +
                   " flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
@@ -124,6 +124,7 @@ const Sidebar = () => {
             <li>
               <NavLink
                 to="regulations"
+                onClick={() => (isMobile ? closeSidebar() : null)}
                 className={({ isActive }) =>
                   (isActive ? "bg-gray-700/40" : "") +
                   " flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
@@ -138,6 +139,7 @@ const Sidebar = () => {
             <li>
               <NavLink
                 to="https://ibsu.edu.ge/ge/home-library/"
+                onClick={() => (isMobile ? closeSidebar() : null)}
                 target="_blank"
                 className={({ isActive }) =>
                   (isActive ? "bg-gray-700/40" : "") +
