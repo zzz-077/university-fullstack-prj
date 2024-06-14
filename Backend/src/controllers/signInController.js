@@ -36,8 +36,8 @@ async function signInController(req, res) {
     const accessToken = await generateAccessToken(userID);
     const refreshToken = await generateRefreshToken(userID);
 
-    createAccessTokenCookie(res, accessToken);
-    createRefreshTokenCookie(res, refreshToken);
+    await createAccessTokenCookie(res, accessToken);
+    await createRefreshTokenCookie(res, refreshToken);
 
     return res.status(200).send(foundUserData);
   } catch (error) {

@@ -6,7 +6,7 @@ import Admins from "../../../models/adminModel.js";
 import passwordValid from "../../../validations/passwordValidation.js";
 import { createUserByPosition } from "../../../utils/createUserByPosition.js";
 import { generateID } from "../../../utils/generateUserID.js";
-
+import { sendUserCodeToEmail } from "../../../utils/sendEmail.js";
 async function createUser(req, res) {
   const { userInfo } = req.body;
 
@@ -19,7 +19,7 @@ async function createUser(req, res) {
     if (!isPasswordValid) throw new Error("Password does not match!");
 
     await createUserByPosition(userInfo, userInfo.positionID);
-
+    sendUserCodeToEmail(userInfo.email, userInfo.userID, res);
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
