@@ -25,7 +25,6 @@ const Sidebar = () => {
   useEffect(() => {
     const handleResize = () => {
       const isMobile_ = window.innerWidth < BREAK_POINT;
-      console.log({ isMobile_, isSidebarOpen });
       if (isMobile_ && isSidebarOpen) {
         closeSidebar();
       }
@@ -36,7 +35,6 @@ const Sidebar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log({ isMobile, isSidebarOpen });
   return (
     <div
       className={"relative " + (isSidebarOpen ? "w-fit " : "w-0 ")}
