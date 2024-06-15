@@ -7,12 +7,12 @@ import passwordValid from "../../../validations/passwordValidation.js";
 import { createUserByPosition } from "../../../utils/createUserByPosition.js";
 import { generateID } from "../../../utils/generateUserID.js";
 import { sendUserCodeToEmail } from "../../../utils/sendEmail.js";
-import { adduserInAcademicRecordsCollection } from "./addUserInARC/addUserInARCcontroller.js";
+import { adduserInAcademicRecordsCollection } from "../addUserInARC/addUserInARCcontroller.js";
 async function createUser(req, res) {
   const { userInfo } = req.body;
 
   const addedInARC = await adduserInAcademicRecordsCollection(
-    req.body,
+    userInfo,
     userInfo.subjects
   );
 

@@ -1,4 +1,4 @@
-import Subject from "../../../../models/subjectModel.js";
+import Subject from "../../../models/subjectModel.js";
 
 async function getDataFromSubjectCollection(subjects) {
   const subjectCodes = subjects.map((subject) => ({
