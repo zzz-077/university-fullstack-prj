@@ -21,7 +21,7 @@ const subjectSchema = new mongoose.Schema(
           type: String,
           require: true,
         },
-        lap: {
+        lab: {
           type: String,
           require: true,
         },
