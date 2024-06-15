@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthRequired from "./components/AuthRequired/AuthRequired";
-import Home from "./pages/HomeStudent";
 import SignIn from "./pages/SignIn";
 import Layout from "./components/Layout/Layout";
 import HomeStudent from "./pages/HomeStudent";
 import ProfileStudent from "./pages/ProfileStudent";
 import NotFound from "./pages/NotFound";
+import HomeAdmin from "./pages/HomeAdmin";
 
 function App() {
   return (
@@ -14,8 +14,13 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route element={<AuthRequired />}>
           <Route element={<Layout />}>
-            <Route index element={<HomeStudent />} />
-            <Route path="profile" element={<ProfileStudent />} />
+            <Route path="student">
+              <Route index element={<HomeStudent />} />
+              <Route path="profile" element={<ProfileStudent />} />
+            </Route>
+            <Route path="admin">
+              <Route index element={<HomeAdmin />} />
+            </Route>
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
