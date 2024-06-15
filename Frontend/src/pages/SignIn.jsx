@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import login from "../services/login";
 const SignIn = () => {
   axios.defaults.withCredentials = true;
   const [showPassword, setShowPassword] = useState(false);
@@ -13,11 +14,12 @@ const SignIn = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const res = await login(formData.userID, formData.password);
+    console.log(res);
   };
-  
+
   return (
     <div className="xs:relative w-full h-full flex items-center justify-center bg-slate-950 z-1">
       <div className="absolute inset-0 bg-[url('/images/map.png')] bg-opacity-100  z-3 bg-center bg-no-repeat bg-contain mix-blend-screen opacity-[0.08] saturate-0 invert"></div>
@@ -68,7 +70,9 @@ const SignIn = () => {
               <button
                 type="button"
                 onClick={() => {
-                  formData.password ? setShowPassword((prev) => !prev) : null;
+                  formData.password
+                    ? setShowPassword((prev) => !prev)
+                    : null;
                 }}
                 className={`absolute top-0 end-0 p-3.5 rounded-e-md transition-all duration-300 ${
                   formData.password
