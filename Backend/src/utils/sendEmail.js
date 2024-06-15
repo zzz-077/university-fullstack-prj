@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const sendUserCodeToEmail = (email,userID,res) => {
+const sendUserCodeToEmail = (email,userID,password,res) => {
   let tranporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -13,8 +13,9 @@ const sendUserCodeToEmail = (email,userID,res) => {
     from: "redmerabi@gmail.com",
     to: email,
     subject: "GET YOUR USER ID FOR SIS",
-    text: `Your sis userID is: ${userID}.`,
-  };
+    text: `Your sis userID is: ${userID}
+Your sis password is: ${password}`
+};
   tranporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       return res.json({

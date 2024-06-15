@@ -16,10 +16,9 @@ async function signInController(req, res) {
 
   try {
     const foundUser = await Users.find({ userID });
-
     if (!foundUser.length) throw new Error("UserID isn't correct!");
 
-    const isPasswordMatch = await passwordCheck(
+    const isPasswordMatch = passwordCheck(
       foundUser[0].password,
       password
     );

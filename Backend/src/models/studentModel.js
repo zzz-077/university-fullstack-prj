@@ -35,10 +35,6 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    password: {
-      type: String,
-      required: true,
-    },
     enrolledYear: {
       type: Number,
       required: true,
