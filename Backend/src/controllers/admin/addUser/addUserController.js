@@ -7,9 +7,24 @@ import passwordValid from "../../../validations/passwordValidation.js";
 import { createUserByPosition } from "../../../utils/createUserByPosition.js";
 import { generateID } from "../../../utils/generateUserID.js";
 import { sendUserCodeToEmail } from "../../../utils/sendEmail.js";
+import { adduserInAcademicRecordsCollection } from "./addUserInARC/addUserInARCcontroller.js";
 async function createUser(req, res) {
   const { userInfo } = req.body;
 
+  const addedInARC = await adduserInAcademicRecordsCollection(
+    req.body,
+    userInfo.subjects
+  );
+
+  // console.log("===LOG3===");
+  // console.log(addedInARC);
+  if (addedInARC.error) {
+    return res.status(addedInARC.error.status).json({
+      status: "failed",
+      message: addedInARC.error.message,
+      errors: addedInARC.error.details || null,
+    });
+  }
   const isPasswordValid = passwordValid.passwordMatch(
     userInfo.password,
     req.body.passwordRepeat.password
