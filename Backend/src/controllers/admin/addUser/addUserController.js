@@ -3,21 +3,20 @@ import Students from "../../../models/studentModel.js";
 import Users from "../../../models/userModel.js";
 import Lecturers from "../../../models/lecturerModel.js";
 import Admins from "../../../models/adminModel.js";
-import passwordValid from "../../../validations/passwordValidation.js";
+
 import { createUserByPosition } from "../../../utils/createUserByPosition.js";
 import { generateID } from "../../../utils/generateUserID.js";
 import { sendUserCodeToEmail } from "../../../utils/sendEmail.js";
 import { adduserInAcademicRecordsCollection } from "../addUserInARC/addUserInARCcontroller.js";
+import { generatePassword } from "../../../utils/generateUserPassword.js";
 async function createUser(req, res) {
   const { userInfo } = req.body;
 
   const addedInARC = await adduserInAcademicRecordsCollection(
     userInfo,
     userInfo.subjects
-  );
+  ); 
 
-  // console.log("===LOG3===");
-  // console.log(addedInARC);
   if (addedInARC.error) {
     return res.status(addedInARC.error.status).json({
       status: "failed",
@@ -25,16 +24,9 @@ async function createUser(req, res) {
       errors: addedInARC.error.details || null,
     });
   }
-  const isPasswordValid = passwordValid.passwordMatch(
-    userInfo.password,
-    req.body.passwordRepeat.password
-  );
-
   try {
-    if (!isPasswordValid) throw new Error("Password does not match!");
-
     await createUserByPosition(userInfo, userInfo.positionID);
-    sendUserCodeToEmail(userInfo.email, userInfo.userID, res);
+    sendUserCodeToEmail(userInfo.email, userInfo.userID,generatePassword(userInfo.firstName), res);
     return res.status(201).json({
       status: "success",
       message: "User created successfully",
@@ -55,6 +47,7 @@ async function createUser(req, res) {
 
 async function createStudent(userInfo) {
   userInfo.userID = await generateID(userInfo.positionID);
+  userInfo.password = generatePassword(userInfo.firstName)
   userInfo.password = await bcrypt.hash(userInfo.password, 10);
   await Students.create(userInfo);
   createUserInUsers(userInfo);
@@ -62,6 +55,7 @@ async function createStudent(userInfo) {
 
 async function createLecturer(userInfo) {
   userInfo.userID = await generateID(userInfo.positionID);
+  userInfo.password = generatePassword(userInfo.firstName)
   userInfo.password = await bcrypt.hash(userInfo.password, 10);
   await Lecturers.create(userInfo);
   createUserInUsers(userInfo);
@@ -69,6 +63,7 @@ async function createLecturer(userInfo) {
 
 async function createAdmin(userInfo) {
   userInfo.userID = await generateID(userInfo.positionID);
+  userInfo.password = generatePassword(userInfo.firstName)
   userInfo.password = await bcrypt.hash(userInfo.password, 10);
   await Admins.create(userInfo);
   createUserInUsers(userInfo);
