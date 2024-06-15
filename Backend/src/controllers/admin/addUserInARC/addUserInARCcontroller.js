@@ -1,5 +1,5 @@
 import { getDataFromSubjectCollection } from "./GetSubjectController.js";
-import academicRecord from "../../../../models/academicRecordsModel.js";
+import academicRecord from "../../../models/academicRecordsModel.js";
 
 async function adduserInAcademicRecordsCollection(reqBody, subjects) {
   const subjectData = await getDataFromSubjectCollection(subjects);
