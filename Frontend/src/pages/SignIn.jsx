@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import login from "../services/login";
 import useAuthStore from "../store/authStore";
 import { redirect, useNavigate } from "react-router-dom";
-
+import { Input } from "../components/ui/input";
+import PasswordInput from "@/components/ui/passwordInput";
 const SignIn = () => {
   const navigate = useNavigate();
   const { isLoggedIn, login } = useAuthStore();
-  const [showPassword, setShowPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     userID: "",
     password: "",
@@ -15,6 +16,7 @@ const SignIn = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -30,100 +32,33 @@ const SignIn = () => {
   }, [isLoggedIn]);
 
   return (
-    <div className="xs:relative w-full h-full flex items-center justify-center bg-slate-950 z-1">
+    <div className="xs:relative w-full h-screen flex items-center justify-center bg-slate-950 z-1">
       <div className="absolute inset-0 bg-[url('/images/map.png')] bg-opacity-100  z-3 bg-center bg-no-repeat bg-contain mix-blend-screen opacity-[0.08] saturate-0 invert"></div>
       <div
-        className="z-10 w-full max-w-sm h-full bg-opacity-35 backdrop-blur-sm xs:h-auto flex items-center justify-center py-6 px-6 xs:rounded-lg shadow xs:p-6 md:p-8 bg-gray-800 border-gray-700 bg drop-shadow-md
+        className="z-10 w-full max-w-sm h-fit bg-opacity-35 backdrop-blur-sm xs:h-auto flex items-center justify-center py-6 px-6 xs:rounded-lg shadow xs:p-6 md:p-8 bg-gray-800 border-gray-700 bg drop-shadow-md
       "
       >
         <form className="pb-2 w-full" onSubmit={handleSubmit}>
-          <h5 className="text-2xl font-medium text-white text-center uppercase">
-            Log In
-          </h5>
-          <div className="mt-3 mb-4">
-            <label
-              htmlFor="text"
-              className="block mb-1 text-sm font-medium text-white"
-            >
-              Your ID
-            </label>
-            <input
-              type="text"
+          <div className="grid gap-5">
+            <h5 className="text-2xl font-medium text-white text-center uppercase">
+              Log In
+            </h5>
+            <Input
+              onInputChange={handleChange}
+              type="email"
               name="userID"
+              htmlFor="text"
+              labelText="Your ID"
               id="text"
-              value={formData.userID}
-              onChange={handleChange}
-              className="border  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
+              className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
               placeholder="Your Unique ID"
-              required
+              autoComplete="off"
             />
-          </div>
-          <div className="mb-8">
-            <label
-              htmlFor="password"
-              className="block mb-1 text-sm font-medium text-white"
-            >
-              Password
-            </label>
-            <div className="relative">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-                className="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  formData.password
-                    ? setShowPassword((prev) => !prev)
-                    : null;
-                }}
-                className={`absolute top-0 end-0 p-3.5 rounded-e-md transition-all duration-300 ${
-                  formData.password
-                    ? "opacity-100  hover:opacity-80"
-                    : "opacity-0 cursor-text"
-                }`}
-              >
-                {showPassword ? (
-                  <svg
-                    className="flex-shrink-0 size-3.5 text-gray-400 scale-125"
-                    width="26"
-                    height="26"
-                    viewBox="0 0 26 26"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                ) : (
-                  <svg
-                    className="flex-shrink-0 size-3.5 text-gray-400 scale-125"
-                    width="26"
-                    height="26"
-                    viewBox="0 0 26 26"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
-                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
-                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
-                    <line x1="2" x2="22" y1="2" y2="22"></line>
-                  </svg>
-                )}
-              </button>
-            </div>
+
+            <PasswordInput
+              onInputChange={handleChange}
+              value={formData.password}
+            />
           </div>
           <button
             type="submit"
