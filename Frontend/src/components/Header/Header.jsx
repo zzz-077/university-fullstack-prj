@@ -1,16 +1,14 @@
 import React from "react";
-import useSidebarStore from "../../store/useSidebarStore";
+import sidebarStore from "../../store/sidebarStore";
 import { Link } from "react-router-dom";
 import UserDropDownMenu from "../UserDropDownMenu/UserDropDownMenu";
 
 const Header = () => {
-  const toggleSidebar = useSidebarStore(
-    (state) => state.toggleSidebar
-  );
+  const toggleSidebar = sidebarStore((state) => state.toggleSidebar);
 
   return (
     <nav className="border-gray-200 bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => toggleSidebar()}

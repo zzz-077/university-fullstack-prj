@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiClient from "../../api/apiClient";
+import apiClient from "../api/apiClient";
 
 export default async function login(username, password) {
   try {

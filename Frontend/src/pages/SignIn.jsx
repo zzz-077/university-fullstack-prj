@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import login from "../services/login";
+import useAuthStore from "../store/authStore";
+import { redirect, useNavigate } from "react-router-dom";
+
 const SignIn = () => {
-  axios.defaults.withCredentials = true;
+  const navigate = useNavigate();
+  const { isLoggedIn, login } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     userID: "",
@@ -16,9 +19,15 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login(formData.userID, formData.password);
-    console.log(res);
+    // const res = await login(formData.userID, formData.password);
+    login();
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/student");
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="xs:relative w-full h-full flex items-center justify-center bg-slate-950 z-1">

@@ -1,14 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaUserGraduate } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const UserDropDownMenu = () => {
   const ref = useRef();
+  const navigate = useNavigate();
+  const { logout } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const signout = () => {
+    logout();
+    navigate("/");
   };
 
   useEffect(() => {
@@ -58,7 +66,10 @@ const UserDropDownMenu = () => {
           Your Profile{" "}
           <FaUserGraduate className="text-lg opacity-90" />
         </Link>
-        <button className="w-full flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110">
+        <button
+          onClick={signout}
+          className="w-full flex justify-between items-center px-4 py-2 text-sm text-gray-100 bg-inherit hover:brightness-110"
+        >
           Sign out
           <TbLogout2 className="text-lg opacity-90" />
         </button>
