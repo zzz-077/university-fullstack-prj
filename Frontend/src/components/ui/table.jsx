@@ -21,7 +21,7 @@ const TableHeader = React.forwardRef(
       {...props}
     />
   )
-);
+); 
 TableHeader.displayName = "TableHeader";
 
 const TableBody = React.forwardRef(({ className, ...props }, ref) => (
@@ -77,7 +77,7 @@ const TableCell = React.forwardRef(({ className, ...props }, ref) => (
     className={cn(
       "p-4 align-middle [&:has([role=checkbox])]:pr-0",
       className
-    )}
+    )} 
     {...props}
   />
 ));

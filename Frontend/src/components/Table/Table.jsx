@@ -67,7 +67,7 @@ export default function TableComponent() {
           <TableHead className="text-white/60">Method</TableHead>
           <TableHead className="text-right text-white/60">
             Amount
-          </TableHead>
+          </TableHead> 
         </TableRow>
       </TableHeader>
       <TableBody>
