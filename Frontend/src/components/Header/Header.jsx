@@ -13,7 +13,7 @@ const Header = () => {
           <button
             onClick={() => toggleSidebar()}
             type="button"
-            className="inline-flex items-center p-2   text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           >
             <span className="sr-only">Open sidebar</span>
             <svg
@@ -34,7 +34,7 @@ const Header = () => {
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white relative">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white relative">
               IBSU
               <div className="absolute bottom-0 left-full ml-1 text-[10px]/[10px] font-normal w-2 h-4 opacity-45">
                 SIS

@@ -90,7 +90,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <BiSolidHome className="w-5 h-5 opacity-60" />
+                <BiSolidHome className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
                 <span className="ms-3">Home</span>
               </NavLink>
             </li>
@@ -103,7 +103,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <CgTranscript className="w-5 h-5 opacity-60" />
+                <CgTranscript className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
                   Transcript
                 </span>
@@ -118,7 +118,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <MdOutlinePayments className="w-5 h-5 opacity-60" />
+                <MdOutlinePayments className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Tuition Fee
                 </span>
@@ -133,7 +133,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <FaRegAddressBook className="w-5 h-5 opacity-60" />
+                <FaRegAddressBook className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Regulations
                 </span>
@@ -149,7 +149,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <MdLocalLibrary className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <MdLocalLibrary className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Library
                 </span>
