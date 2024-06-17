@@ -2,7 +2,7 @@ import express from "express";
 import {
   postAcademicRecords,
   getAcademicRecords,
-} from "../../controllers/academicRecords/academicRecordsController.js";
+} from "../controllers/academicRecords/academicRecordsController.js";
 const router = express.Router();
 
 router.post("/post", postAcademicRecords);
