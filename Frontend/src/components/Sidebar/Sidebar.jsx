@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import useSidebarStore from "../../store/sidebarStore";
 import { BREAK_POINT } from "../../utils/constants";
-import { LuPanelLeftClose } from "react-icons/lu";
+import { IoMdClose } from "react-icons/io";
 import {
   RiArrowLeftWideFill,
   RiArrowRightWideFill,
@@ -23,6 +23,14 @@ const Sidebar = () => {
   );
 
   useEffect(() => {
+    if (isMobile && isSidebarOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isSidebarOpen]);
+
+  useEffect(() => {
     const handleResize = () => {
       const isMobile_ = window.innerWidth < BREAK_POINT;
       if (isMobile_ && isSidebarOpen) {
@@ -38,46 +46,47 @@ const Sidebar = () => {
   return (
     <div
       className={
-        "relative h-full" + (isSidebarOpen ? "w-fit " : "w-0 ")
+        "relative h-full sm:sticky sm:top-0 sm:left-0 " +
+        (isSidebarOpen ? "w-fit " : "w-0 ")
       }
     >
       {!isMobile && (
         <button
           onClick={toggleSidebar}
-          className="absolute inset-0 left-full m-auto text-4xl z-[99999999999] opacity-0 transition-all duration-[0.350s] hover:opacity-100 sm:h-full w-fit delay-100"
+          className="absolute inset-0 left-full m-auto text-4xl z-[999999999999999] opacity-0 transition-all duration-[0.350s] hover:opacity-100 sm:h-full w-fit delay-100  bg-white/5 backdrop-blur-lg duration-300 hover:ring-0"
         >
           {isSidebarOpen ? (
-            <RiArrowLeftWideFill className="text-white opacity-20 " />
+            <RiArrowLeftWideFill className="text-white opacity-60 " />
           ) : (
-            <RiArrowRightWideFill className="text-white opacity-20 " />
+            <RiArrowRightWideFill className="text-white opacity-60 " />
           )}
         </button>
       )}
       <aside
-        className={`z-40  sm:relative transition-all -translate-x-full sm:opacity-100 sm:translate-x-0 sm:h-[calc(100vh-64px)] 
-        fixed inset-0 
+        className={`z-[999999999999999999] duration-300  transition-all -translate-x-full sm:opacity-100 sm:translate-x-0 sm:h-[calc(100vh-64px)] sm:sticky sm:top-0 sm:left-0
+         inset-0 fixed
         ${
           isMobile
             ? isSidebarOpen
               ? "translate-x-0 "
               : ""
             : !isSidebarOpen
-            ? "sm:-translate-x-full sm:w-0 sm:opacity-0 sm:-z-10 "
-            : "sm:translate-x-0 sm:w-auto sm:opacity-100 "
+            ? "sm:-translate-x-full sm:opacity-0 sm:-z-10 "
+            : "sm:translate-x-0  sm:opacity-100 "
         } `}
       >
         <div
-          className={`h-full px-3 py-4 overflow-y-auto bg-slate-900 ${
-            !isMobile && !isSidebarOpen ? "hidden" : "visible"
-          }`}
+          className={`h-full px-3 py-4 overflow-y-auto bg-slate-900 
+            ${!isMobile && !isSidebarOpen ? "hidden" : "visible"}
+          `}
         >
-          <div className="s-full flex items-center justify-between px-2 sm:hidden bg-inherit mb-4">
+          <div className="w-full flex items-center justify-between px-2 sm:hidden bg-inherit mb-4">
             <button
-              className="ml-auto p-2 bg-inherit brightness-150 rounded-lg flex items-center justify-between hover:brightness-[1.70]"
+              className="ml-auto p-1 bg-inherit brightness-100 rounded-lg flex items-center justify-between hover:brightness-[1.25] transition-all duration-150"
               onClick={closeSidebar}
               title="Close Sidebar"
             >
-              <LuPanelLeftClose className="text-xl " />
+              <IoMdClose className="text-3xl text-white/40" />
             </button>
           </div>
           <ul className="space-y-2 font-medium">
@@ -90,7 +99,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <BiSolidHome className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
+                <BiSolidHome className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" />
                 <span className="ms-3">Home</span>
               </NavLink>
             </li>
@@ -103,7 +112,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <CgTranscript className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
+                <CgTranscript className="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
                   Transcript
                 </span>
@@ -118,7 +127,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <MdOutlinePayments className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
+                <MdOutlinePayments className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Tuition Fee
                 </span>
@@ -133,7 +142,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <FaRegAddressBook className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
+                <FaRegAddressBook className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Regulations
                 </span>
@@ -149,7 +158,7 @@ const Sidebar = () => {
                   " flex items-center p-2 rounded-lg  pl-4 pr-12 text-white hover:bg-gray-700 group"
                 }
               >
-                <MdLocalLibrary className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white" />
+                <MdLocalLibrary className="flex-shrink-0 w-5 h-5 transition duration-75 text-gray-400 group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Library
                 </span>
