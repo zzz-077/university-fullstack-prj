@@ -4,7 +4,16 @@ import { cn } from "@/lib/utils";
 
 const Input = React.forwardRef(
   (
-    { onInputChange, type, name, htmlFor, labelText, id, className, ...props },
+    {
+      onInputChange,
+      type,
+      name,
+      htmlFor,
+      labelText,
+      id,
+      className,
+      ...props
+    },
     ref
   ) => {
     const handleChange = (event) => {
@@ -12,12 +21,16 @@ const Input = React.forwardRef(
     };
     return (
       <div className="grid w-full max-w-sm items-center">
-        <label
-          htmlFor={htmlFor}
-          className={cn("block mb-1 text-sm font-medium text-white")}
-        >
-          {labelText}
-        </label>
+        {labelText && (
+          <label
+            htmlFor={htmlFor}
+            className={cn(
+              "block mb-1 text-sm font-medium text-white"
+            )}
+          >
+            {labelText}
+          </label>
+        )}
         <input
           type={type}
           name={name}
@@ -37,4 +50,3 @@ const Input = React.forwardRef(
 Input.displayName = "Input";
 
 export { Input };
-

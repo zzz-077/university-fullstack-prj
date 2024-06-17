@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <section className="bg-white w-full h-full flex items-center dark:bg-gray-900 relative">
+    <section className="w-full h-full flex items-center bg-gray-900 relative">
       <div className="absolute inset-0 bg-[url('/images/offline.png')] bg-no-repeat bg-center bg-contain opacity-[0.07]"></div>
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 z-10">
         <div className="mx-auto max-w-screen-sm text-center">
@@ -19,7 +19,7 @@ const NotFound = () => {
           </p>
           <Link
             to="/"
-            className="inline-flex text-white bg-[#2563eb] hover:bg-[#1e40af] focus:ring-2 focus:outline-none focus:ring-[#93c5fd] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#1e3a8a] my-4"
+            className="inline-flex text-white bg-[#2563eb] hover:bg-[#1e40af] focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-[#1e3a8a] my-4"
           >
             Back to Homepage
           </Link>

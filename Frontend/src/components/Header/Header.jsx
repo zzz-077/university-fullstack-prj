@@ -7,13 +7,13 @@ const Header = () => {
   const toggleSidebar = sidebarStore((state) => state.toggleSidebar);
 
   return (
-    <nav className="border-gray-200 bg-gray-900">
+    <nav className="border-gray-200 bg-gray-900 ">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => toggleSidebar()}
             type="button"
-            className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none  dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 text-sm rounded-lg sm:hidden  focus:outline-none  text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
           >
             <span className="sr-only">Open sidebar</span>
             <svg
