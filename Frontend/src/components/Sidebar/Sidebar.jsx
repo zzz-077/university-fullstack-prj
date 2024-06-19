@@ -47,7 +47,7 @@ const Sidebar = () => {
     <div
       className={
         "relative h-full sm:sticky sm:top-0 sm:left-0 " +
-        (isSidebarOpen ? "w-fit " : "w-0 ")
+        (isSidebarOpen ? "min-w-72" : "w-0 ")
       }
     >
       {!isMobile && (
