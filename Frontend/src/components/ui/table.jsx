@@ -91,7 +91,7 @@ const TableCaption = React.forwardRef(
       {...props}
     />
   )
-);
+); 
 TableCaption.displayName = "TableCaption";
 
 export {

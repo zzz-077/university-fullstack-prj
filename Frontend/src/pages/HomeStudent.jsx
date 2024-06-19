@@ -13,15 +13,9 @@ const data = [
       time: "13:30-15:20",
       lab: "B301",
     },
-  },
-  {
-    id: "m5gr84i9",
-    subject: { name: "Backend programming", group: 2, code: "CS137" },
-    schedule: {
-      lecturer: "Anri Morchiladze",
-      day: "Wednesday",
-      time: "13:30-15:20",
-      lab: "B301",
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
     },
   },
   {
@@ -32,6 +26,66 @@ const data = [
       day: "Wednesday",
       time: "13:30-15:20",
       lab: "B301",
+    },
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
+    },
+  },
+  {
+    id: "m5gr84i9",
+    subject: { name: "Backend programming", group: 2, code: "CS137" },
+    schedule: {
+      lecturer: "Anri Morchiladze",
+      day: "Wednesday",
+      time: "13:30-15:20",
+      lab: "B301",
+    },
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
+    },
+  },
+  {
+    id: "m5gr84i9",
+    subject: { name: "Backend programming", group: 2, code: "CS137" },
+    schedule: {
+      lecturer: "Anri Morchiladze",
+      day: "Wednesday",
+      time: "13:30-15:20",
+      lab: "B301",
+    },
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
+    },
+  },
+  {
+    id: "m5gr84i9",
+    subject: { name: "Backend programming", group: 2, code: "CS137" },
+    schedule: {
+      lecturer: "Anri Morchiladze",
+      day: "Wednesday",
+      time: "13:30-15:20",
+      lab: "B301",
+    },
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
+    },
+  },
+  {
+    id: "m5gr84i9",
+    subject: { name: "Backend programming", group: 2, code: "CS137" },
+    schedule: {
+      lecturer: "Anri Morchiladze",
+      day: "Wednesday",
+      time: "13:30-15:20",
+      lab: "B301",
+    },
+    examTimes: {
+      midterm: "not announced",
+      final: "not announced",
     },
   },
 ];
@@ -73,10 +127,8 @@ const HomeStudent = () => {
         return (
           <Button
             variant="ghost"
-            className="text-amber-300"
-            onClick={() =>
-              column.toggleSorting(column.getIsSorted() === "asc")
-            }
+            className="text-white"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
             Schedule
             <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -84,19 +136,45 @@ const HomeStudent = () => {
         );
       },
       cell: ({ row }) => (
-        <div className="flex flex-col gap-4 items-start ">
-          <div className="w-fit text-sm font-semibold flex gap-2 justify-between items-center rounded text-amber-400">
+        <div className="flex flex-col gap-4 items-start">
+          <div className="w-fit text-sm font-semibold flex gap-2 justify-between items-center rounded text-white">
             {row.getValue("schedule")?.day},
             {" " + row.getValue("schedule")?.time}
-            <AlarmClock className="w-5 text-amber-500" />
+            <AlarmClock className="w-5 text-white" />
           </div>
           <div className="w-fit flex justify-between gap-5">
-            <span className="text-xs font-bold bg-amber-500/20 text-orange-400 py-1 px-2 rounded">
+            <span className="text-xs font-bold bg-blue-900/30  text-white py-1 px-2 rounded">
               {row.getValue("schedule")?.lab}
             </span>
-            <span className="text-xs font-bold bg-amber-500/20 text-orange-400 py-1 px-2 rounded">
+            <span className="text-xs font-bold bg-blue-900/30 text-white py-1 px-2 rounded">
               {row.getValue("schedule")?.lecturer}
             </span>
+          </div>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "examTimes",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            className="text-green-300"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Exams
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <div className="flex flex-col gap-4 items-start ">
+          <div className="w-fit text-sm font-semibold flex gap-2 justify-between items-center rounded text-green-300">
+            Midterm: {row.getValue("examTimes")?.midterm}
+            {/* <AlarmClock className="w-5 text-green-300" /> */}
+          </div>
+          <div className="w-fit text-sm font-semibold flex gap-2 justify-between items-center rounded text-green-300">
+            Final: {row.getValue("examTimes")?.final}
           </div>
         </div>
       ),
@@ -104,13 +182,22 @@ const HomeStudent = () => {
   ];
 
   return (
-    <div className="w-full pl-10 pr-3">
+    <div className="flex flex-col justify-center items-center min-h-full w-full pl-10 pr-3">
       <CustomTable
         columns={columns}
         data={data}
         searchBy="subject"
         searchable={false}
       />
+      <div className="flex w-full justify-between items-center max-w-7xl select-none">
+        <p className="w-full text-xl text-blue-400 font-semibold">
+          &copy; IBSU Student Information System
+        </p>
+        <div className="flex justify-end items-center  text-white-400 font-semibold cursor-pointer">
+          <p className="text-green-300 mr-3">English</p> | 
+          <p className="text-blue-400 ml-3">ქართული</p>
+        </div>
+      </div>
     </div>
   );
 };

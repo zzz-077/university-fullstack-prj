@@ -7,11 +7,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  ArrowUpDown,
-  ChevronDown,
-  MoreHorizontal,
-} from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -78,15 +74,13 @@ export default function CustomTable({
   }, [rowSelection]);
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-7xl">
       <div className="flex items-center py-4 gap-8">
         {searchable && (
           <Input
             placeholder="Filter emails..."
             value={
-              searchBy
-                ? table.getColumn(searchBy)?.getFilterValue() || ""
-                : ""
+              searchBy ? table.getColumn(searchBy)?.getFilterValue() || "" : ""
             }
             onChange={handleSearch}
             className="max-w-sm"
@@ -177,24 +171,26 @@ export default function CustomTable({
             {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
         )}
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
+        {searchable && (
+          <div className="space-x-2">
+            <Button
+              variant="outline" 
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
