@@ -1,5 +1,6 @@
 import { getDataFromSubjectCollection } from "./GetSubjectController.js";
 import academicRecord from "../../../models/academicRecordsModel.js";
+import { generateID } from "../../../utils/generateUserID.js";
 
 async function adduserInAcademicRecordsCollection(reqBody, subjects) {
   const subjectData = await getDataFromSubjectCollection(subjects);
@@ -8,8 +9,8 @@ async function adduserInAcademicRecordsCollection(reqBody, subjects) {
   try {
     if (subjectData.error) return subjectData;
 
-    const userid = reqBody.userID;
-
+    const userid = await generateID(1);
+    // console.log(userid);
     const academicRecords = [];
 
     subjectData.forEach((data, i) => {
