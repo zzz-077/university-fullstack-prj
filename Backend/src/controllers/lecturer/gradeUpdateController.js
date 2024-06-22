@@ -2,8 +2,8 @@ import academicRecord from "../../models/academicRecordsModel.js";
 
 async function updateGrades(req, res) {
   var request = req.body;
-  console.log("=====log1====");
-  console.log(request);
+  // console.log("=====log1====");
+  // console.log(request);
   const filter = {
     userID: request.userID,
     subjectID: request.subjectID,
@@ -24,8 +24,8 @@ async function updateGrades(req, res) {
       update,
       options
     );
-    console.log("=====log2====");
-    console.log(updatedGardes);
+    // console.log("=====log2====");
+    // console.log(updatedGardes);
     if (!updatedGardes)
       return res.status(404).json({
         status: "fail",
