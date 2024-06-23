@@ -11,7 +11,7 @@ async function studentsGet(req, res) {
       return res.status(400).json({
         status: "fail",
         message: "Data request failed!",
-        errors: error.message,
+        errors: subject,
       });
     const findStudents = await academicRecord.find({ $or: subject });
     if (findStudents.length === 0)
