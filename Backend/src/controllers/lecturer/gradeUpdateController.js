@@ -29,13 +29,13 @@ async function updateGrades(req, res) {
     if (!updatedGardes)
       return res.status(404).json({
         status: "fail",
-        message: "User grades not found!",
+        message: "Student's grades not found!",
         errors: updatedGardes,
       });
     else {
       return res.status(200).json({
         status: "success",
-        message: "User grades updated successfully!",
+        message: "Student's grades updated successfully!",
         errors: null,
         data: {
           updatedGardes,
@@ -43,9 +43,9 @@ async function updateGrades(req, res) {
       });
     }
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "fail",
-      message: "User grades update failed!",
+      message: "Student's grades update failed!",
       errors: error.message,
     });
   }
