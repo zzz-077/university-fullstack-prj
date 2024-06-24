@@ -15,7 +15,7 @@ function App() {
         <Route element={<AuthRequired />}>
           <Route element={<Layout />}>
             <Route path="student">
-              <Route index element={<HomeStudent />} />
+              <Route index element={<HomeAdmin />} />
               <Route path="profile" element={<ProfileStudent />} />
             </Route>
             <Route path="admin">
@@ -25,7 +25,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   );
 }
 

@@ -29,7 +29,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { cn } from "@/lib/utils";
 export default function CustomTable({
   searchable = true,
   searchBy = "",
@@ -39,6 +39,7 @@ export default function CustomTable({
   columns,
   data,
   onSelectedRowsChange = () => {},
+  className,
   ...props
 }) {
   const [sorting, setSorting] = React.useState([]);
@@ -63,7 +64,7 @@ export default function CustomTable({
       columnVisibility,
       rowSelection,
     },
-  });
+  }); 
 
   React.useEffect(() => {
     const selectedRows = table
@@ -74,7 +75,7 @@ export default function CustomTable({
   }, [rowSelection]);
 
   return (
-    <div className="w-full max-w-7xl">
+    <div className={cn("w-full",className)}>
       <div className="flex items-center py-4 gap-8">
         {searchable && (
           <Input

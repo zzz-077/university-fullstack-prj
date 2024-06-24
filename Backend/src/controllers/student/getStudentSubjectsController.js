@@ -13,7 +13,6 @@ async function getStudentssubject(req, res) {
       });
     return res.status(200).json({
       status: "success",
-      message: "No subjects found!",
       message: "Student's subjects found successfully!",
       errors: null,
       data: [findStudentSubjects],

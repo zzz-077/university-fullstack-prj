@@ -188,13 +188,14 @@ const HomeStudent = () => {
         data={data}
         searchBy="subject"
         searchable={false}
+        className="max-w-7xl"
       />
       <div className="flex w-full justify-between items-center max-w-7xl select-none">
         <p className="w-full text-xl text-blue-400 font-semibold">
           &copy; IBSU Student Information System
         </p>
         <div className="flex justify-end items-center  text-white-400 font-semibold cursor-pointer">
-          <p className="text-green-300 mr-3">English</p> | 
+          <p className="text-green-300 mr-3">English</p> |
           <p className="text-blue-400 ml-3">ქართული</p>
         </div>
       </div>
