@@ -13,11 +13,11 @@ const router = express.Router();
 
 router.use("/admin", authenticate, adminCreateUserRoutes);
 router.use("/signin", signInUserRoutes);
-router.use("/subjects", subjectsRoutes);
-router.use("/academicRecords", academicRecordsRoutes);
-router.use("/lecturer", gradesUpdateRoutes);
-router.use("/lecturer", studentsGetRoutes);
-router.use("/student", getStudentsSubjectRoutes);
+router.use("/subjects",authenticate, subjectsRoutes);
+router.use("/academicRecords",authenticate, academicRecordsRoutes);
+router.use("/lecturer",authenticate, gradesUpdateRoutes);
+router.use("/lecturer",authenticate, studentsGetRoutes);
+router.use("/student",authenticate, getStudentsSubjectRoutes);
 router.get("/auth/status", authenticate, checkIfSignedIn);
 router.get("/logout", logoutController);
 export default router;
