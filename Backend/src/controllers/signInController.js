@@ -11,7 +11,7 @@ import {
 } from "../utils/generateToken.js";
 
 async function signInController(req, res) {
-  //checking user in usersCollection
+  
   const { userID, password } = req.body;
 
   try {
